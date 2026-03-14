@@ -27,9 +27,35 @@
  * TODO: Declare and assign all necessary constants and variables with user input.
  * Make sure, to help your users understand what they need to type in, by using clear prompt-instructions.
  */
+let lastName = prompt("What is your LAST name? ");
+let firstName = prompt("What is your first name? ");
+let age = prompt("How old are you? ");
+let heightCm = prompt("Please enter your height in cm (example: 167): ");
+let weight = prompt("Please enter your weight in kg (example: 62): ");
 
 const LINE = "-----------------------------------------------------";
-let bmr, bmi, normal, danger;
+let bmr, bmi, normal, danger, gender;
+
+do {
+    gender = prompt("Please choose your gender (male/female):  ").toLowerCase().trim();
+    if (gender !=="male" && gender !=="female") {
+        alert("Invalid input! Please enter your gender.");
+    }
+} while (gender !=="female" && gender !=="female");
+
+let heightM = (heightCm / 100).toFixed(2);
+
+if (gender === "female") {
+    bmr = 655 + (10 * weight) + (2 * heightCm) - (6 * age);
+} else {
+    bmr = 66 + (14 * weight) + (5 * heightCm) - (7 * age);
+}
+
+bmi = (10000 * weight) / (heightCm * heightCm);
+
+normal = (bmi >= 18 && bmi <=25) ? "Yes" : "No";
+
+danger = (bmi < 16 || bmi >= 30) ? "Yes" : "No";
 
 /**
  * Formulas:
@@ -70,8 +96,19 @@ let bmr, bmi, normal, danger;
  *   Danger:               No
  *   -----------------------------------------------------
  */
+console.log(LINE);
+console.log("Name:                 " + lastName.toUpperCase() + ", " + firstName);
+console.log(LINE);
+console.log("Age:                  " + age + " Years");
+console.log("Height:               " + heightM + "m");
+console.log("Weight:               " + weight + " kg");
+console.log("Basal Metabolic Rate: " + Math.round(bmr) + " kcal");
+console.log("Body Mass Index:      " + bmi)
+console.log("Normal Weight:        " + normal);
+console.log("Danger:               " + danger);
+console.log(LINE);
 
-console.log(LINE); // Logs the dashed-line.
+//console.log(LINE); // Logs the dashed-line.
 
 /*
  * TODO: Make sure to TEST YOUR SOFTWARE! Does it work, when People are smaller than 1 meter? Or taller than 2?
